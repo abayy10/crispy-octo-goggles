@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>ABY FOOTBALL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: red;
+      color: blue;
+      text-align: center;
+    }
+    h1 {
+      color: #22c55e;
+    }
+    .news {
+      background: blue
+      margin: 10px auto;
+      padding: 15px;
+      border-radius: 10px;
+      width: 80%;
+    }
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚽ Info Sepak Bola Terbaru</h1>
+<div id="news-container">Loading...</div>
+
+<script>
+async function getNews() {
+  const container = document.getElementById("news-container");
+
+  try {
+    const res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://www.goal.com/id/berita"));
+    const data = await res.json();
+
+    container.innerHTML = `
+      <div class="news">
+        <h3>Berita Sepak Bola Hari Ini</h3>
+        <p>Klik link di bawah untuk melihat update terbaru:</p>
+        <a href="https://www.goal.com/id/berita" target="_blank">Lihat Berita</a>
+      </div>
+    `;
+  } catch (err) {
+    container.innerHTML = "Gagal memuat berita.";
+  }
+}
+
+getNews();
+</script>
+
+</body>
+</html>
